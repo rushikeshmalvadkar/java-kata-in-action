@@ -22,7 +22,7 @@ public class FizzBuzzProcessor {
     }
 
     private boolean isDivisibleByFiveAndThree(int input) {
-        return input % 3 == 0 && input % 5 == 0;
+        return isDivisibleByFive(input) && isDivisibleByThree(input);
     }
 
 
