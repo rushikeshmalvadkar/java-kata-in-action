@@ -1,7 +1,6 @@
 package com.rm.fbk;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -10,20 +9,14 @@ public class FizzBuzzProcessorTest {
 
     @Test
     void should_return_1_if_input_number_is_1() {
-
         FizzBuzzProcessor fizzBuzzProcessor = new FizzBuzzProcessor();
-
-        String result = fizzBuzzProcessor.process(1);
-        Assertions.assertThat(result).isEqualTo("1");
+        Assertions.assertThat(fizzBuzzProcessor.process(1)).isEqualTo("1");
     }
 
     @Test
     void should_return_2_if_input_number_is_2() {
-
         FizzBuzzProcessor fizzBuzzProcessor = new FizzBuzzProcessor();
-
-        String result = fizzBuzzProcessor.process(2);
-        Assertions.assertThat(result).isEqualTo("2");
+        Assertions.assertThat(fizzBuzzProcessor.process(2)).isEqualTo("2");
     }
 
 
@@ -34,11 +27,8 @@ public class FizzBuzzProcessorTest {
             12,Fizz
             """)
     void should_return_Fizz_if_input_number_which_is_divisible_by_three(int input,String result) {
-
         FizzBuzzProcessor fizzBuzzProcessor = new FizzBuzzProcessor();
-
-        String output = fizzBuzzProcessor.process(input);
-        Assertions.assertThat(output).isEqualTo(result);
+        Assertions.assertThat(fizzBuzzProcessor.process(input)).isEqualTo(result);
     }
 
     @ParameterizedTest
@@ -48,10 +38,18 @@ public class FizzBuzzProcessorTest {
             20,Buzz
             """)
     void should_return_Buzz_if_input_number_which_is_divisible_by_5(int input,String result) {
-
         FizzBuzzProcessor fizzBuzzProcessor = new FizzBuzzProcessor();
+        Assertions.assertThat(fizzBuzzProcessor.process(input)).isEqualTo(result);
+    }
 
-        String output = fizzBuzzProcessor.process(input);
-        Assertions.assertThat(output).isEqualTo(result);
+    @ParameterizedTest
+    @CsvSource(textBlock = """
+            15,FizzBuzz
+            30,FizzBuzz
+            45,FizzBuzz
+            """)
+    void should_return_FizzBuzz_if_input_number_which_is_divisible_by_5_and_3(int input,String result) {
+        FizzBuzzProcessor fizzBuzzProcessor = new FizzBuzzProcessor();
+        Assertions.assertThat(fizzBuzzProcessor.process(input)).isEqualTo(result);
     }
 }
