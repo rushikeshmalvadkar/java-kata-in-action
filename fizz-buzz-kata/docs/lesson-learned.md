@@ -4,3 +4,6 @@
 
 * If someone change in the remote branch when we try to push the code on remote branch facing the error.
 * So First the take the pull from the remote branch and then push the code in remote branch.
+* For Inline the syntax use Ctr + Alt+n
+  Example : Assertions.assertThat(fizzBuzzProcessor.process(input)).isEqualTo(result)
+   

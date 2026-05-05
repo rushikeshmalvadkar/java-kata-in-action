@@ -1,24 +1,21 @@
 package com.rm.fbk;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 public class FizzBuzzProcessorTest {
 
-    @Test
-    void should_return_1_if_input_number_is_1() {
+    @ParameterizedTest
+    @CsvSource(textBlock = """
+            1,1
+            4,4
+            7,7
+            """)
+    void should_return_as_it_value_if_input_not_divisible_by_three_or_five(int input,String result) {
         FizzBuzzProcessor fizzBuzzProcessor = new FizzBuzzProcessor();
-        Assertions.assertThat(fizzBuzzProcessor.process(1)).isEqualTo("1");
+        Assertions.assertThat(fizzBuzzProcessor.process(input)).isEqualTo(result);
     }
-
-    @Test
-    void should_return_2_if_input_number_is_2() {
-        FizzBuzzProcessor fizzBuzzProcessor = new FizzBuzzProcessor();
-        Assertions.assertThat(fizzBuzzProcessor.process(2)).isEqualTo("2");
-    }
-
 
     @ParameterizedTest
     @CsvSource(textBlock = """
