@@ -40,4 +40,18 @@ public class FizzBuzzProcessorTest {
         String output = fizzBuzzProcessor.process(input);
         Assertions.assertThat(output).isEqualTo(result);
     }
+
+    @ParameterizedTest
+    @CsvSource(textBlock = """
+            5,Buzz
+            25,Buzz
+            20,Buzz
+            """)
+    void should_return_Buzz_if_input_number_which_is_divisible_by_5(int input,String result) {
+
+        FizzBuzzProcessor fizzBuzzProcessor = new FizzBuzzProcessor();
+
+        String output = fizzBuzzProcessor.process(input);
+        Assertions.assertThat(output).isEqualTo(result);
+    }
 }
