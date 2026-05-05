@@ -1,7 +1,10 @@
 package com.rm.fbk;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class FizzBuzzProcessorTest {
 
@@ -21,5 +24,20 @@ public class FizzBuzzProcessorTest {
 
         String result = fizzBuzzProcessor.process(2);
         Assertions.assertThat(result).isEqualTo("2");
+    }
+
+
+    @ParameterizedTest
+    @CsvSource(textBlock = """
+            3,Fizz
+            9,Fizz
+            12,Fizz
+            """)
+    void should_return_Fizz_if_input_number_which_is_divisible_by_three(int input,String result) {
+
+        FizzBuzzProcessor fizzBuzzProcessor = new FizzBuzzProcessor();
+
+        String output = fizzBuzzProcessor.process(input);
+        Assertions.assertThat(output).isEqualTo(result);
     }
 }
