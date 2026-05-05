@@ -13,4 +13,13 @@ public class FizzBuzzProcessorTest {
         String result = fizzBuzzProcessor.process(1);
         Assertions.assertThat(result).isEqualTo("1");
     }
+
+    @Test
+    void should_return_2_if_input_number_is_2() {
+
+        FizzBuzzProcessor fizzBuzzProcessor = new FizzBuzzProcessor();
+
+        String result = fizzBuzzProcessor.process(2);
+        Assertions.assertThat(result).isEqualTo("2");
+    }
 }
