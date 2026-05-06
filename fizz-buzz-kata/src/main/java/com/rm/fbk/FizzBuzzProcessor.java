@@ -7,36 +7,34 @@ public class FizzBuzzProcessor {
     public static final String FIZZ_BUZZ = FIZZ + BUZZ;
 
     public String process(int number) {
-        String outputOfContains = ContainsHas3And5(number);
-        String finalOutPut = divisibleBy3AndOr5(number, outputOfContains);
-        if (!finalOutPut.isEmpty()) return finalOutPut;
+        StringBuilder builder = new StringBuilder();
+        if (contains3(number)) builder.append(FIZZ);
+        if (contains5(number)) builder.append(BUZZ);
+        if (divisibilityBy3Or5(number)) builder.append(divisibleBy3AndOr5(number));
+        String parsedNumber = builder.toString();
+        return parsedNumber.isEmpty() ? asString(number) :  parsedNumber;
+    }
+
+    private static  String asString(int number) {
         return Integer.toString(number);
     }
 
-    private String ContainsHas3And5(int input) {
-        String inputInString = Integer.toString(input);
-        StringBuilder containsOutPut = new StringBuilder();
-        if (inputInString.contains("3")) {
-            containsOutPut.append(FIZZ);
-        }
-        if (inputInString.contains("5")) {
-            containsOutPut.append(BUZZ);
-        }
-        return containsOutPut.toString();
+    private boolean divisibilityBy3Or5(int input) {
+        return isDivisibleByThree(input) || isDivisibleByFive(input);
     }
 
-    private String divisibleBy3AndOr5(int number, String containsOutput) {
-        StringBuilder divisibleOutput = new StringBuilder(containsOutput);
-        if (isDivisibleByFiveAndThree(number)) {
-            return divisibleOutput.append(FIZZ_BUZZ).toString();
-        }
-        if (isDivisibleByThree(number)) {
-            return divisibleOutput.append(FIZZ).toString();
-        }
-        if (isDivisibleByFive(number)) {
-            return divisibleOutput.append(BUZZ).toString();
-        }
-        return divisibleOutput.toString();
+    private static boolean contains5(int input) {
+        return asString(input).contains("5");
+    }
+
+    private static boolean contains3(int input) {
+        return asString(input).contains("3");
+    }
+
+    private String divisibleBy3AndOr5(int number) {
+        if (isDivisibleByFiveAndThree(number)) return FIZZ_BUZZ;
+        if (isDivisibleByThree(number)) return FIZZ;
+        return BUZZ;
     }
 
     private boolean isDivisibleByFive(int input) {
