@@ -9,4 +9,7 @@
   Example : Assertions.assertThat(fizzBuzzProcessor.process(input)).isEqualTo(result)
 ### Item 3 : Integer ToString Method
 * for convert int  to string use Integer toString method 
+### Item 4 : Functional Programming
+* learned about the IntStream range method if we want to get specific range like 1 to 5
+* boxed() method for 
    
