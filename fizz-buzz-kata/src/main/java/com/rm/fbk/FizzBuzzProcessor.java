@@ -2,6 +2,10 @@ package com.rm.fbk;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.joining;
 
 public class FizzBuzzProcessor {
 
@@ -20,11 +24,10 @@ public class FizzBuzzProcessor {
     }
 
     public String tillNumberProcess(int input) {
-        List<String> parseResults = new ArrayList<>();
-        for (int i = 1; i <= input; i++) {
-            parseResults.add(process(i));
-        }
-        return String.join(NEW_LINE, parseResults);
+        return IntStream.rangeClosed(1,input)
+                .boxed()
+                .map(this::process)
+                .collect(joining(NEW_LINE));
     }
 
     private static  String asString(int number) {
