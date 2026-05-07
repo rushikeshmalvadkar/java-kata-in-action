@@ -35,13 +35,13 @@ Enhance the logic with additional conditions:
 
 * A number is **Fizz** if:
 
-    * it is divisible by 3, OR
-    * it contains the digit 3
+  * it is divisible by 3, OR
+  * it contains the digit 3
 
 * A number is **Buzz** if:
 
-    * it is divisible by 5, OR
-    * it contains the digit 5
+  * it is divisible by 5, OR
+  * it contains the digit 5
 
 ---
 
@@ -51,6 +51,23 @@ Enhance the logic with additional conditions:
 * 35 → FizzBuzzBuzz (contains 3 and 5, and divisible by 5)
 
 ---
+
+## Stage 3 – Till number parser
+
+* Input will be till number means till that number we need fizz buzz parsed result
+
+## Examples
+
+* Input : 5
+* Means result will from 1 to till 5 parsed result like below
+
+```shell
+1
+2
+FizzFizz
+4
+BuzzBuzz
+```
 
 ## Focus
 
