@@ -103,7 +103,7 @@ public class FizzBuzzProcessorTest {
     @Test
     void should_return_output_for_till_number_three() {
         FizzBuzzProcessor fizzBuzzProcessor = new FizzBuzzProcessor();
-        Assertions.assertThat(fizzBuzzProcessor.process(3)).isEqualTo("""
+        Assertions.assertThat(fizzBuzzProcessor.tillNumberProcess(3)).isEqualTo("""
                 1
                 2
                 Fizz

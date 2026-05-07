@@ -15,6 +15,10 @@ public class FizzBuzzProcessor {
         return parsedNumber.isEmpty() ? asString(number) :  parsedNumber;
     }
 
+    public String tillNumberProcess(int input) {
+        return null;
+    }
+
     private static  String asString(int number) {
         return Integer.toString(number);
     }
