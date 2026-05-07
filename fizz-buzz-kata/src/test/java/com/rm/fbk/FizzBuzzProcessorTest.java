@@ -1,6 +1,7 @@
 package com.rm.fbk;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -98,5 +99,17 @@ public class FizzBuzzProcessorTest {
         FizzBuzzProcessor fizzBuzzProcessor = new FizzBuzzProcessor();
         Assertions.assertThat(fizzBuzzProcessor.process(input)).isEqualTo(result);
     }
+
+    @Test
+    void should_return_output_for_till_number_three() {
+        FizzBuzzProcessor fizzBuzzProcessor = new FizzBuzzProcessor();
+        Assertions.assertThat(fizzBuzzProcessor.process(3)).isEqualTo("""
+                1
+                2
+                Fizz
+                """);
+    }
+
+
 
 }
