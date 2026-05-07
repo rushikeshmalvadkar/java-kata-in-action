@@ -1,5 +1,8 @@
 package com.rm.fbk;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class FizzBuzzProcessor {
 
     public static final String FIZZ = "Fizz";
@@ -17,13 +20,11 @@ public class FizzBuzzProcessor {
     }
 
     public String tillNumberProcess(int input) {
-        StringBuilder builder = new StringBuilder();
-        for (int number = 1; number <= input; number++) {
-            String outputOfSpecificNumber = process(number);
-            builder.append(outputOfSpecificNumber);
-            if (number!=input) builder.append(NEW_LINE);
+        List<String> parseResults = new ArrayList<>();
+        for (int i = 1; i <= input; i++) {
+            parseResults.add(process(i));
         }
-        return builder.toString();
+        return String.join(NEW_LINE, parseResults);
     }
 
     private static  String asString(int number) {
