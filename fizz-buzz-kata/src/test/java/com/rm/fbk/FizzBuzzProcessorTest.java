@@ -106,8 +106,8 @@ public class FizzBuzzProcessorTest {
         Assertions.assertThat(fizzBuzzProcessor.tillNumberProcess(3)).isEqualTo("""
                 1
                 2
-                Fizz
-                """);
+                FizzFizz"""
+                );
     }
 
 

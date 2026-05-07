@@ -5,6 +5,7 @@ public class FizzBuzzProcessor {
     public static final String FIZZ = "Fizz";
     public static final String BUZZ = "Buzz";
     public static final String FIZZ_BUZZ = FIZZ + BUZZ;
+    public static final String NEW_LINE = "\n";
 
     public String process(int number) {
         StringBuilder builder = new StringBuilder();
@@ -16,7 +17,13 @@ public class FizzBuzzProcessor {
     }
 
     public String tillNumberProcess(int input) {
-        return null;
+        StringBuilder builder = new StringBuilder();
+        for (int number = 1; number <= input; number++) {
+            String outputOfSpecificNumber = process(number);
+            builder.append(outputOfSpecificNumber);
+            if (number!=input) builder.append(NEW_LINE);
+        }
+        return builder.toString();
     }
 
     private static  String asString(int number) {
