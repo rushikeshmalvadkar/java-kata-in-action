@@ -1,16 +1,16 @@
 package com.rm.fbk;
 
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.joining;
 
 public class FizzBuzzProcessor {
 
-    public static final String FIZZ = "Fizz";
-    public static final String BUZZ = "Buzz";
-    public static final String FIZZ_BUZZ = FIZZ + BUZZ;
-    public static final String NEW_LINE = "\n";
+    private static final String FIZZ = "Fizz";
+    private static final String BUZZ = "Buzz";
+    private static final String FIZZ_BUZZ = FIZZ + BUZZ;
+    private static final String NEW_LINE = "\n";
+    private static final int START_FROM_ONE = 1;
 
     public String process(int number) {
         StringBuilder builder = new StringBuilder();
@@ -18,23 +18,21 @@ public class FizzBuzzProcessor {
         if (contains5(number)) builder.append(BUZZ);
         if (divisibilityBy3Or5(number)) builder.append(divisibleBy3AndOr5(number));
         String parsedNumber = builder.toString();
-        return parsedNumber.isEmpty() ? asString(number) :  parsedNumber;
+        return parsedNumber.isEmpty() ? asString(number) : parsedNumber;
     }
 
     public String tillNumberProcess(int input) {
-        return IntStream.rangeClosed(1,input)
+        return rangeProcess(START_FROM_ONE,input);
+    }
+
+    public String rangeProcess(int startNumber, int endNumber) {
+        return IntStream.rangeClosed(startNumber, endNumber)
                 .boxed()
                 .map(this::process)
                 .collect(joining(NEW_LINE));
     }
 
-    public String rangeProcess(int startNumber, int endNumber) {
-              return IntStream.rangeClosed(startNumber,endNumber)
-                       .boxed()
-                       .map(this::process)
-                       .collect(joining("\n"));
-    }
-    private static  String asString(int number) {
+    private static String asString(int number) {
         return Integer.toString(number);
     }
 
