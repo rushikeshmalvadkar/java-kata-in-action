@@ -9,12 +9,26 @@ public class FizzBuzzRangeProcesserTest  extends AbstractFizzBuzzTest{
     void should_return_output_of_fizz_buzz_based_on_range_between_5_9() {
         String result =  fizzBuzzProcessor.rangeProcess(5,9);
         Assertions.assertThat(result).isEqualTo("""
-                  Buzz,
+                  BuzzBuzz
                   Fizz
-                  7,
-                  8,
+                  7
+                  8
                   Fizz"""
                 );
+
+    }
+
+    @Test
+    void should_return_output_of_fizz_buzz_based_on_range_between_10_15() {
+        String result =  fizzBuzzProcessor.rangeProcess(10,15);
+        Assertions.assertThat(result).isEqualTo("""
+                  Buzz
+                  11
+                  Fizz
+                  Fizz
+                  14
+                  BuzzFizzBuzz"""
+        );
 
     }
 }

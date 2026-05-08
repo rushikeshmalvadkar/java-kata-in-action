@@ -1,5 +1,6 @@
 package com.rm.fbk;
 
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.joining;
@@ -28,8 +29,10 @@ public class FizzBuzzProcessor {
     }
 
     public String rangeProcess(int startNumber, int endNumber) {
-
-        return null;
+              return IntStream.rangeClosed(startNumber,endNumber)
+                       .boxed()
+                       .map(this::process)
+                       .collect(joining("\n"));
     }
     private static  String asString(int number) {
         return Integer.toString(number);
