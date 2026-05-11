@@ -1,15 +1,8 @@
 package com.rm.fbk;
 
+import org.junit.jupiter.api.Tag;
 
-import org.junit.jupiter.api.BeforeEach;
-
+@Tag("fizz-buzz")
 public abstract class AbstractFizzBuzzTest {
-
-    protected   FizzBuzzProcessor fizzBuzzProcessor;
-
-    @BeforeEach
-    void setUp() {
-        fizzBuzzProcessor = new FizzBuzzProcessor();
-    }
 
 }

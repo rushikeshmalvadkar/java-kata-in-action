@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 public class FizzBuzzTillNumberTest extends AbstractFizzBuzzTest {
     @Test
     void should_return_output_for_till_number_three() {
-        Assertions.assertThat(fizzBuzzProcessor.tillNumberProcess(3)).isEqualTo("""
+        Assertions.assertThat(FizzBuzzTillNumber.of(3).tillNumberProcess()).isEqualTo("""
                 1
                 2
                 FizzFizz"""
