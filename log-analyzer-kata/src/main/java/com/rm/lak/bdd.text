@@ -1,0 +1,13 @@
+Build a parser that converts a single log line into a structured log entry.
+
+<TIMESTAMP> <LEVEL> <MESSAGE>
+2026-06-15 10:45:32 INFO Application started successfully
+
+1)parse the log level from the log entry
+
+given : 2026-06-15 10:45:32 INFO Application started successfully
+when  :  when we call parse method with the level
+then output
+
+
+
