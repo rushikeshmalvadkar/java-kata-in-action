@@ -1,9 +1,14 @@
 package com.rm.lak;
 
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.LocalDateTime;
 
-
+@Getter
+@Setter
 public class LogEntry {
     private LocalDateTime time;
     private LogLevel level;
@@ -21,17 +26,5 @@ public class LogEntry {
              LogLevel.valueOf(level),
              message
         );
-    }
-
-    public LocalDateTime getTime() {
-        return time;
-    }
-
-    public LogLevel getLevel() {
-        return level;
-    }
-
-    public String getMessage() {
-        return message;
     }
 }
