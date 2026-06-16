@@ -7,7 +7,7 @@ public class LogParserTest {
 
     @Test
     void should_parse_log() {
-        String log = "2026-06-15T10:45:32 INFO Application started successfully";
+        String log = "2026-06-15T10:45:32 INFO : Application started successfully";
         LogParser logParser = new LogParser();
         LogEntry logEntry =   logParser.parse(log);
         Assertions.assertThat(logEntry.getLevel()).isEqualTo(LogLevel.INFO);
