@@ -1,8 +1,13 @@
 package com.rm.lak.domain;
 
+import com.rm.lak.enums.LogLevel;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.*;
 
 @Data
 public class LogFile {
@@ -21,5 +26,11 @@ public class LogFile {
 
     public long entryCount() {
         return logEntries.size();
+    }
+
+    public Map<LogLevel, Long> groupByLogLevel() {
+        return logEntries.stream()
+                .collect(groupingBy(LogEntry::getLevel, counting()));
+
     }
 }
