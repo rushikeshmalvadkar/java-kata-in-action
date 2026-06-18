@@ -5,19 +5,19 @@ import lombok.Data;
 
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.*;
+import static java.util.stream.Collectors.counting;
+import static java.util.stream.Collectors.groupingBy;
 
 @Data
 public class LogFile {
     private final List<LogEntry> logEntries;
 
-    public static LogFile from(String logs){
+    public static LogFile from(String logs) {
         List<LogEntry> logEntries = logs.lines()
                 .map(LogEntry::parse)
                 .toList();
-       return new LogFile(logEntries);
+        return new LogFile(logEntries);
     }
 
     public List<LogEntry> entries() {
