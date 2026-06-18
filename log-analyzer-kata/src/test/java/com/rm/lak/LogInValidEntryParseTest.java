@@ -1,5 +1,6 @@
 package com.rm.lak;
 
+import com.rm.lak.domain.LogEntry;
 import com.rm.lak.exceptions.InvalidLogEntryException;
 import org.junit.jupiter.api.Test;
 

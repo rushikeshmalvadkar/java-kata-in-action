@@ -1,11 +1,11 @@
-package com.rm.lak;
+package com.rm.lak.domain;
 
 
+import com.rm.lak.enums.LogLevel;
 import com.rm.lak.exceptions.InvalidLogEntryException;
 import lombok.Data;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Data
 public class LogEntry {
@@ -45,11 +45,5 @@ public class LogEntry {
         String timeStamp = logEntryNonMessageParts[0];
         String logLevel = logEntryNonMessageParts[1];
         return of(timeStamp, logLevel, logEntryMessagePart);
-    }
-
-    public static List<LogEntry> multiParse(List<String> multiLog) {
-        return multiLog.stream()
-                .map(LogEntry::parse)
-                .toList();
     }
 }

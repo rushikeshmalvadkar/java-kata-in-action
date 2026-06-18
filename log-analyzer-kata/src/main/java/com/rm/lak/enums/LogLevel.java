@@ -1,4 +1,4 @@
-package com.rm.lak;
+package com.rm.lak.enums;
 
 public enum LogLevel {
     INFO,

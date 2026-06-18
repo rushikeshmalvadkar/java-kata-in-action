@@ -1,5 +1,7 @@
 package com.rm.lak;
 
+import com.rm.lak.domain.LogEntry;
+import com.rm.lak.enums.LogLevel;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
