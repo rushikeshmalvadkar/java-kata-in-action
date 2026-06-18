@@ -5,6 +5,8 @@ import lombok.Data;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
@@ -28,9 +30,8 @@ public class LogFile {
         return logEntries.size();
     }
 
-    public Map<LogLevel, Long> groupByLogLevel() {
+    public Map<LogLevel, Long> groupBy(Supplier<Function<LogEntry, LogLevel>> supplier) {
         return logEntries.stream()
-                .collect(groupingBy(LogEntry::getLevel, counting()));
-
+                .collect(groupingBy(supplier.get(), counting()));
     }
 }
