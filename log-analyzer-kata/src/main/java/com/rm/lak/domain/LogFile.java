@@ -3,11 +3,14 @@ package com.rm.lak.domain;
 import com.rm.lak.enums.LogLevel;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
-import java.util.function.Supplier;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
+import static java.lang.String.format;
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 
@@ -30,8 +33,36 @@ public class LogFile {
         return logEntries.size();
     }
 
-    public Map<LogLevel, Long> groupBy(Supplier<Function<LogEntry, LogLevel>> supplier) {
+    public Map<LogLevel, Long> groupByLogLevel() {
         return logEntries.stream()
-                .collect(groupingBy(supplier.get(), counting()));
+                .collect(groupingBy((LogEntry::getLevel), counting()));
+    }
+
+    public Map<String, Long> groupByHour() {
+        return logEntries.stream()
+                .collect(Collectors.groupingBy(LogFile :: formatAsDateHourOnly, counting()));
+
+    }
+
+    public List<LogEntry> findByLogLevel(LogLevel logLevel) {
+        Predicate<LogEntry> loglevelPredicate = (logEntry) -> logEntry.getLevel() == logLevel;
+        return findBy(loglevelPredicate);
+
+    }
+
+    public List<LogEntry> findEntriesByMessage(String message) {
+        Predicate<LogEntry> logMessage = (logEntry -> logEntry.getMessage().equals(message));
+        return findBy(logMessage);
+
+    }
+
+    private List<LogEntry> findBy(Predicate<LogEntry> predicate) {
+        return logEntries.stream()
+                .filter(predicate)
+                .toList();
+    }
+    private static String formatAsDateHourOnly(LogEntry logEntry) {
+        LocalDateTime timestamp = logEntry.getTime();
+        return format("%sT%s", timestamp.toLocalDate(), timestamp.getHour());
     }
 }
