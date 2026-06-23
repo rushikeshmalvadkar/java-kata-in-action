@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class LogsOFBetweenTimeRangeTest extends AbstractLogAnalyzerTest {
+public class LogsOfBetweenTimeRangeTest extends AbstractLogAnalyzerTest {
 
     @Test
     void should_return_logs_between_times_stamp_range() {
@@ -51,7 +51,7 @@ public class LogsOFBetweenTimeRangeTest extends AbstractLogAnalyzerTest {
 
     }
     @Test
-    void should_return_empty_if_logs_between_range_with_include_start_time() {
+    void should_return_logs_between_range_with_include_start_time() {
         String logs = """
                 2026-07-10T10:00:00 INFO : User login
                 2026-07-10T10:15:30 WARN : High memory usage

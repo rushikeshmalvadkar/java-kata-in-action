@@ -57,7 +57,7 @@ public class LogFile {
 
     public List<LogEntry> findLogsBetween(LocalDateTime startTime, LocalDateTime endtime) {
         return logEntries.stream()
-                .filter(logEntry -> logEntry.isBetween(startTime, endtime))
+                .filter(logEntry -> logEntry.isBetweenAndInclusiveRange(startTime, endtime))
                 .toList();
 
     }
