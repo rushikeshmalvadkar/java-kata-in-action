@@ -55,12 +55,10 @@ public class LogFile {
 
     }
 
-    public List<LogEntry> findLogsBetween(LocalDateTime start, LocalDateTime end) {
-        List<LogEntry> list = logEntries.stream()
-                .filter(logEntry -> logEntry.getTime().isAfter(start) && logEntry.getTime().isBefore(end))
+    public List<LogEntry> findLogsBetween(LocalDateTime startTime, LocalDateTime endtime) {
+        return logEntries.stream()
+                .filter(logEntry -> logEntry.getTime().isAfter(startTime) && logEntry.getTime().isBefore(endtime))
                 .toList();
-        System.out.println(list);
-        return list;
 
     }
 
