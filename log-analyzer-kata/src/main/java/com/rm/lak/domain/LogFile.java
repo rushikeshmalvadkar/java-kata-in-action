@@ -4,7 +4,6 @@ import com.rm.lak.enums.LogLevel;
 import lombok.Data;
 
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
@@ -40,7 +39,7 @@ public class LogFile {
 
     public Map<String, Long> groupByHour() {
         return logEntries.stream()
-                .collect(Collectors.groupingBy(LogFile :: formatAsDateHourOnly, counting()));
+                .collect(Collectors.groupingBy(LogFile::formatAsDateHourOnly, counting()));
 
     }
 
@@ -56,13 +55,24 @@ public class LogFile {
 
     }
 
+    public List<LogEntry> findLogsBetween(LocalDateTime start, LocalDateTime end) {
+        List<LogEntry> list = logEntries.stream()
+                .filter(logEntry -> logEntry.getTime().isAfter(start) && logEntry.getTime().isBefore(end))
+                .toList();
+        System.out.println(list);
+        return list;
+
+    }
+
     private List<LogEntry> findBy(Predicate<LogEntry> predicate) {
         return logEntries.stream()
                 .filter(predicate)
                 .toList();
     }
+
     private static String formatAsDateHourOnly(LogEntry logEntry) {
         LocalDateTime timestamp = logEntry.getTime();
         return format("%sT%s", timestamp.toLocalDate(), timestamp.getHour());
     }
+
 }
