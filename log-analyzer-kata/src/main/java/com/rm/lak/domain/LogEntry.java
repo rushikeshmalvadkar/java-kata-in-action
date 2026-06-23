@@ -46,4 +46,8 @@ public class LogEntry {
         String logLevel = logEntryNonMessageParts[1];
         return of(timeStamp, logLevel, logEntryMessagePart);
     }
+
+    public  boolean isBetween(LocalDateTime startTime, LocalDateTime endtime) {
+        return (time.isAfter(startTime) || time.isEqual(startTime)) && (time.isBefore(endtime) || time.isEqual(endtime));
+    }
 }
