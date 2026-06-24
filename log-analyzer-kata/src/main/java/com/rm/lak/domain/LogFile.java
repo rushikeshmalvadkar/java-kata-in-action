@@ -12,8 +12,7 @@ import java.util.stream.Collectors;
 
 import static java.lang.String.format;
 import static java.util.Comparator.comparing;
-import static java.util.stream.Collectors.counting;
-import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.*;
 
 @Data
 public class LogFile {
@@ -80,7 +79,7 @@ public class LogFile {
        return logEntries.stream()
                 .sorted(comparing(LogEntry::getTime))
                 .map(LogEntry ::format)
-                .collect(Collectors.joining(LINE_BREAK));
+                .collect(joining(LINE_BREAK));
 
 
     }
