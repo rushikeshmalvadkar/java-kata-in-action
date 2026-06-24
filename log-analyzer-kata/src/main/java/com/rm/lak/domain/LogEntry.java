@@ -47,6 +47,12 @@ public class LogEntry {
         return of(timeStamp, logLevel, logEntryMessagePart);
     }
 
+    public  String format() {
+       return String.format("%s %s : %s",
+                time ,level, message
+                       );
+    }
+
     public  boolean isBetweenAndInclusiveRange(LocalDateTime startTime, LocalDateTime endtime) {
         return (time.isAfter(startTime) || time.isEqual(startTime)) && (time.isBefore(endtime) || time.isEqual(endtime));
     }

@@ -65,7 +65,25 @@ public class LogsOfBetweenTimeRangeTest extends AbstractLogAnalyzerTest {
                 containsExactly(
                         LogEntry.of("2026-07-10T10:00:00", "INFO", "User login")
                 );
+    }
 
+    @Test
+    void should_return_logs_between_range_with_include_start_time_end_time() {
+        String logs = """
+                2026-07-10T10:00:00 INFO : User login
+                2026-07-10T10:15:30 WARN : High memory usage
+                2026-07-10T10:30:00 ERROR : Payment failed
+                """;
+        LogFile logFile = LogFile.from(logs);
+        LocalDateTime start = LocalDateTime.parse("2026-07-10T10:00:00");
+        LocalDateTime end = LocalDateTime.parse("2026-07-10T10:30:00");
 
+        List<LogEntry> logsBetweenRange = logFile.findLogsBetween(start, end);
+        Assertions.assertThat(logsBetweenRange).
+                containsExactly(
+                        LogEntry.of("2026-07-10T10:00:00", "INFO", "User login"),
+                        LogEntry.of("2026-07-10T10:15:30", "WARN", "High memory usage"),
+                        LogEntry.of("2026-07-10T10:30:00", "ERROR", "Payment failed")
+                );
     }
 }
