@@ -11,6 +11,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static java.lang.String.format;
+import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 
@@ -77,7 +78,7 @@ public class LogFile {
 
     public String sortByTimeStampAsc() {
        return logEntries.stream()
-                .sorted(Comparator.comparing(LogEntry::getTime))
+                .sorted(comparing(LogEntry::getTime))
                 .map(LogEntry ::format)
                 .collect(Collectors.joining(LINE_BREAK));
 
