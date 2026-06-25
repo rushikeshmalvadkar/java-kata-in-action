@@ -1,6 +1,7 @@
 package com.rm.lak.domain;
 
 import com.rm.lak.enums.LogLevel;
+import com.rm.lak.enums.Sort;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -18,7 +19,6 @@ import static java.util.stream.Collectors.*;
 public class LogFile {
     public static final String LINE_BREAK = "\n";
     private final List<LogEntry> logEntries;
-
     public static LogFile from(String logs) {
         List<LogEntry> logEntries = logs.lines()
                 .map(LogEntry::parse)
@@ -75,13 +75,11 @@ public class LogFile {
         return format("%sT%s", timestamp.toLocalDate(), timestamp.getHour());
     }
 
-    public String sortByTimeStampAsc() {
-       return logEntries.stream()
-                .sorted(comparing(LogEntry::getTime))
-                .map(LogEntry ::format)
+
+    public String sortByTimeStamp(Sort sortBy) {
+        return logEntries.stream()
+                .sorted(LogEntry.comparingTimestamp(sortBy))
+                .map(LogEntry::format)
                 .collect(joining(LINE_BREAK));
-
-
     }
-
 }

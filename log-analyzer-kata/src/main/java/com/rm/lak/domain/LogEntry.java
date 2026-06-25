@@ -2,14 +2,19 @@ package com.rm.lak.domain;
 
 
 import com.rm.lak.enums.LogLevel;
+import com.rm.lak.enums.Sort;
 import com.rm.lak.exceptions.InvalidLogEntryException;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 
 @Data
 public class LogEntry {
+
     private static final String LOG_FORMAT_REGEX = "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2})\\s+(INFO|WARN|ERROR)\\s+:\\s+(.+)$";
+    private static final Comparator<LogEntry> OLDEST_ENTRY_FIRST_COMPARATOR = Comparator.comparing(LogEntry::getTime);
+    private static final Comparator<LogEntry> NEWEST_ENTRY_FIRST_COMPARATOR = Comparator.comparing(LogEntry::getTime).reversed();
 
     private final LocalDateTime time;
     private final LogLevel level;
@@ -47,13 +52,20 @@ public class LogEntry {
         return of(timeStamp, logLevel, logEntryMessagePart);
     }
 
-    public  String format() {
-       return String.format("%s %s : %s",
-                time ,level, message
-                       );
+    public String format() {
+        return String.format("%s %s : %s",
+                time, level, message
+        );
     }
 
-    public  boolean isBetweenAndInclusiveRange(LocalDateTime startTime, LocalDateTime endtime) {
+    public boolean isBetweenAndInclusiveRange(LocalDateTime startTime, LocalDateTime endtime) {
         return (time.isAfter(startTime) || time.isEqual(startTime)) && (time.isBefore(endtime) || time.isEqual(endtime));
+    }
+
+    public static Comparator<LogEntry> comparingTimestamp(Sort sort) {
+        if (sort.isAsc()) {
+            return OLDEST_ENTRY_FIRST_COMPARATOR;
+        }
+        return NEWEST_ENTRY_FIRST_COMPARATOR;
     }
 }
